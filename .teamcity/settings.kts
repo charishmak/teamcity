@@ -1,6 +1,4 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
-import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
-import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -27,33 +25,4 @@ To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
 version = "2018.1"
 
 project {
-
-
 }
-
-object Build : BuildType({
-    name = "Build"
-
-    vcs {
-        root(DslContext.settingsRoot)
-    }
-
-    steps {
-        script {
-            name = "set version using script"
-            scriptContent = """
-                        #!/bin/bash
-                        HASH=%build.vcs.number%
-                        SHORT_HASH=${"$"}{HASH:0:7}
-                        BUILD_COUNTER=%build.counter%
-                        BUILD_NUMBER="1.0.${"$"}BUILD_COUNTER.${"$"}SHORT_HASH"
-                        echo "##teamcity[buildNumber '${"$"}BUILD_NUMBER'}"
-                    """.trimIndent()
-        }
-    }
-
-    triggers {
-        vcs {
-        }
-    }
-})
