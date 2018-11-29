@@ -34,6 +34,12 @@ project {
 
 }
 
+project {
+    name = "Teamcity-Environment01"
+    description = "naked potatoes"
+    buildType (Build)
+}
+
 
 object Build : BuildType({
     name = "Build"
