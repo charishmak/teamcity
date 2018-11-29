@@ -1,6 +1,7 @@
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
+import jetbrains.buildServer.configs.kotlin.v2018_1.ui.create
 
 /*
 The settings script is an entry point for defining a TeamCity
@@ -29,8 +30,10 @@ version = "2018.1"
 project {
     description = "naked potatoes"
     buildType (Build)
+    buildType (Environment01)
 
 }
+
 
 object Build : BuildType({
     name = "Build"
@@ -51,6 +54,23 @@ object Build : BuildType({
                         echo "##teamcity[buildNumber '${"$"}BUILD_NUMBER']"
                     """.trimIndent()
         }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+})
+
+object Environment01 : BuildType({
+    name = "Environment01"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+
     }
 
     triggers {
