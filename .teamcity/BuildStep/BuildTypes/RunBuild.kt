@@ -1,21 +1,20 @@
-package BuikdNow.BuildTypes
+package BuildStep.BuildTypes
 
-import jetbrains.buildServer.configs.kotlin.v2018_1.*
+import jetbrains.buildServer.configs.kotlin.v2018_1.BuildType
+import jetbrains.buildServer.configs.kotlin.v2018_1.DslContext
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
 import jetbrains.buildServer.configs.kotlin.v2018_1.triggers.vcs
 
 object RunBuild : BuildType({
-    uuid = "d0398ad6-0fd0-4635-90a4-52a5dccbe0ad"
     name = "RunBuild"
 
     vcs {
-        //root(DslContext.settingsRoot)
-        checkoutMode = CheckoutMode.ON_SERVER
+        root(DslContext.settingsRoot)
     }
 
     steps {
         script {
-            name = "set version using script"
+            name = "set version using script opa"
             scriptContent = """
                         #!/bin/bash
                         HASH=%build.vcs.number%
@@ -32,3 +31,4 @@ object RunBuild : BuildType({
         }
     }
 })
+
