@@ -12,5 +12,5 @@ object Project : Project ({
     params {
         param( "VSTS.Git.RepoName", "https://github.com/charishmak/teamcity.git#refs/heads/master")
     }
-    subProjectsOrder = arrayListOf(AbsoluteId("Build"))
+    subProjectsOrder = arrayListOf(AbsoluteId("BuikdNow"))
 })

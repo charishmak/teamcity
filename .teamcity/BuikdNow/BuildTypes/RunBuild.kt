@@ -1,4 +1,4 @@
-package Build.BuildTypes
+package BuikdNow.BuildTypes
 
 import jetbrains.buildServer.configs.kotlin.v2018_1.*
 import jetbrains.buildServer.configs.kotlin.v2018_1.buildSteps.script
